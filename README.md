@@ -1,91 +1,80 @@
-# Bank Account Management System (Java ArrayList - OOP)
+# 💳 Enterprise Digital ATM Terminal
 
-A simple Java application demonstrating Object-Oriented Programming (OOP) concepts and dynamic data storage using `ArrayList`. This project simulates basic banking operations, including account creation, account lookup, depositing, withdrawing, and displaying account details.
+> **Sleek, Modern, and Scalable Java Console Architecture.**
 
----
-
-## 📌 Features
-
-* **Dynamic Account Storage:** Stores `BankAccount` objects in a dynamic `ArrayList<BankAccount>`.
-* **Account Lookup:** Searches for specific accounts using their unique account number (`accountNumber`).
-* **Deposit & Withdrawal:** Performs deposit and withdrawal operations with validation for insufficient funds.
-* **Display All Accounts:** Lists all registered bank accounts along with their respective owners and balances.
+A refactored, enterprise-styled Java application implementing clean naming conventions, formatted numerical outputs, and decoupled model components for corporate banking workflows.
 
 ---
 
-## 🏗️ Program Architecture
+## 🌟 Key Features
 
-The program consists of three main Java classes:
-
-1. **`BankAccount.java`**: Represenation of an individual bank account containing properties (`accountNumber`, `ownerName`, `balance`) and static helper methods for performing `deposit` and `withdraw` operations.
-2. **`Bank.java`**: Manages the collection of bank accounts (`ArrayList<BankAccount>`) and provides functionality to add accounts, find accounts, and display all active accounts.
-3. **`BankDemo.java`**: The main driver class (`main` method) that runs the application, initializes accounts, and performs sample transactions.
-
----
-
-## 💻 Tech Stack & Requirements
-
-* **Language:** Java (JDK 8 or higher)
-* **IDE / Editor:** Visual Studio Code, IntelliJ IDEA, Eclipse, or NetBeans
+* **Modern Naming Conventions**: Clean abstractions using `BankAccount`, `Client`, and `BankManager`.
+* **Formatted Currency Display**: Uses Java string formatting (`System.out.printf`) for dual-decimal currency precision.
+* **Dynamic Client-Account Linkage**: Multi-account support per client using generic `List` collections.
+* **Streamlined UI**: Minimalist border UI using clean box-drawing separators.
 
 ---
 
-## 📂 Project Structure
+## 📁 File Structure
 
 ```text
-Arraylist-PBO-Project/
-├── src/
-│   ├── Bank.java
-│   ├── BankAccount.java
-│   └── BankDemo.java
-└── README.md
+src/
+├── BankAccount.java    # Represents monetary account balances and operations
+├── Client.java         # Customer entity holding personal profile and accounts
+├── BankManager.java    # Central controller for customer registration and configurations
+└── App.java            # Terminal entry point handling interactive workflows
 ```
+
+---
+
+## 📊 Class Summary
+
+### `BankAccount.java`
+* `double balanceAmount` — Encapsulated account balance.
+* `boolean deposit(double amount)` — Credits the account balance.
+* `boolean withdraw(double amount)` — Debits the account balance with overdraft checks.
+
+### `Client.java`
+* `String firstName, lastName` — Client identification.
+* `List<BankAccount> accounts` — Dynamic list of linked bank accounts.
+* `String getFullName()` — Concatenates client full name.
+
+### `BankManager.java`
+* `List<Client> clientList` — Central store of registered clients.
+* `static final String DEFAULT_CURRENCY` — System-wide currency standard (`USD`).
+
+### `App.java`
+* `main(String[] args)` — Launches the terminal loop.
 
 ---
 
 ## 🚀 How to Run
 
-### Prerequisites
-Make sure you have JDK installed. You can check by running:
-```bash
-java -version
-```
-
-### Steps
-
-1. **Clone the repository:**
+1. **Compile**:
    ```bash
-   git clone https://github.com/AmandaRezquita/Arraylist-PBO-Project.git
-   cd Arraylist-PBO-Project
+   javac BankAccount.java Client.java BankManager.java App.java
    ```
 
-2. **Compile the Java source files:**
+2. **Execute**:
    ```bash
-   javac Bank.java BankAccount.java BankDemo.java
-   ```
-   *(Or `javac src/*.java` if files are inside a `src` directory)*
-
-3. **Run the program:**
-   ```bash
-   java BankDemo
+   java App
    ```
 
 ---
 
-## 🖥️ Expected Output
+## 🖥️ UI Preview
 
 ```text
-=== Welcome to Bank BNI ===
-Akun atas nama Budi berhasil ditambahkan.
-Akun atas nama Siti berhasil ditambahkan.
+┌──────────────────────────────────────────┐
+│          DIGITAL ATM TERMINAL            │
+│  Client : Amanda Rezquita                │
+├──────────────────────────────────────────┤
+│  [1] Balance Enquiry                     │
+│  [2] Credit Account (Deposit)            │
+│  [3] Debit Account (Withdraw)            │
+│  [4] Terminate Session                   │
+└──────────────────────────────────────────┘
+Select action > 
 
---- Daftar seluruh akun ---
-No. Rek: 101 | Owner: Budi | Saldo: Rp 100000
-No. Rek: 102 | Owner: Siti | Saldo: Rp 250000
-
-Siti - Deposit: Rp 500000
-Current balance: Rp 750000
-
-Siti - Withdraw: Rp 150000
-Current balance: Rp 600000
+Current Balance: 1200.00 USD
 ```

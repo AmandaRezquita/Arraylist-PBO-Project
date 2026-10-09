@@ -1,42 +1,27 @@
 public class BankAccount {
-    private String accountNumber;
-    private String ownerName;
-    private double balance;
+    protected double balanceAmount;
 
-    public BankAccount(String accountNumber, String ownerName, double initialBalance) {
-        this.accountNumber = accountNumber;
-        this.ownerName = ownerName;
-        this.balance = initialBalance;
+    public BankAccount(double initialBalance) {
+        this.balanceAmount = initialBalance;
     }
 
-    public static void deposit(BankAccount acc, double amount) {
-        acc.balance += amount;
-        System.out.println(acc.ownerName + " - Deposit: Rp " + (int) amount);
-        System.out.println("Current balance: Rp " + (int) acc.balance);
-        System.out.println();
+    public double getBalanceAmount() {
+        return balanceAmount;
     }
 
-    public static void withdraw(BankAccount acc, double amount) {
-        if (amount > acc.balance) {
-            System.out.println(acc.ownerName + " - Insufficient balance to withdraw: Rp " + (int) amount);
-            System.out.println();
-            return;
+    public boolean deposit(double amount) {
+        if (amount > 0) {
+            balanceAmount += amount;
+            return true;
         }
-        acc.balance -= amount;
-        System.out.println(acc.ownerName + " - Withdraw: Rp " + (int) amount);
-        System.out.println("Current balance: Rp " + (int) acc.balance);
-        System.out.println();
+        return false;
     }
 
-    public double getBalance() {
-        return balance;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public String getOwnerName() {
-        return ownerName;
+    public boolean withdraw(double amount) {
+        if (amount > 0 && balanceAmount >= amount) {
+            balanceAmount -= amount;
+            return true;
+        }
+        return false;
     }
 }
